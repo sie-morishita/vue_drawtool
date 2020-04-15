@@ -10,6 +10,7 @@
         <button id="pen-blue-button" @click="penBlue">ペン（青）</button>
         <button id="eraser-button" @click="eraser" >消しゴム</button>
         <button id="clear-button" @click="clear">クリア</button>
+        <button id="download-button" @click="download">ダウンロード</button>
     </div>
   </div>
 </template>
@@ -109,6 +110,13 @@ export default {
       this.context.lineJoin = 'square';
       this.context.lineWidth = 30;
       this.context.strokeStyle = '#FFFFFF';
+    },
+    // 画像ダウンロード
+    download: function() {
+        let link = document.createElement("a");
+        link.href = this.canvas.toDataURL("image/png");
+        link.download = 'canvas-' + new Date().getTime() + '.png';
+        link.click();
     }
   }
 };
